@@ -1,0 +1,18 @@
+{
+  "settings": {
+    "env_vars": ["VACATION_END_DATE"],
+    "ignored_repos": ["kevnm67/fastlane"]
+  },
+  "rules": {
+    "pull_request": "kevnm67/peril-settings@rules/all-prs.ts",
+    "issues.opened": "kevnm67/peril-settings@rules/all-issues.ts"
+  },
+  "repos": {
+    "kevnm67/lunchie": {
+      "pull_request.closed": "kevnm67/peril-settings@rules/aeryn.ts"
+    },
+    "kevnm67/life-grip": {
+      "pull_request.closed": "kevnm67/peril-settings@rules/aeryn.ts"
+    }
+  }
+}
