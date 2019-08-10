@@ -1,5 +1,7 @@
 # peril-settings
 
+[![Build Status](https://travis-ci.com/kevnm67/peril-settings.svg?branch=master)](https://travis-ci.com/kevnm67/peril-settings)
+
 ### TOC
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
