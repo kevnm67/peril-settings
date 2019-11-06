@@ -1,0 +1,16 @@
+dependencies:
+  - Carthage/*
+  - Gemfile
+
+enhancement:
+  - Sources/*
+  - Tests/*
+
+CI/CD:
+  - fastlane/*
+  - travis.yml
+  - Dangerfile
+  - .circleci/*
+  - .ruby-version
+  - .swift-version
+  - Makefile
