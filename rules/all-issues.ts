@@ -31,7 +31,7 @@ export const vacation = () => {
     return
   }
   markdown(
-    `Hello! Thank you for the issue, but @kevnm67 is on vacation until ${vacationEndDate}. Hopefully there's another contributor available to help in the meantime – good luck!`
+    `Hello! Thanks for the issue, but I'm is on vacation until ${vacationEndDate}. Hopefully there's another contributor available to help in the meantime – good luck!`
   )
 }
 
