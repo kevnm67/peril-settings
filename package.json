@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/kevnm67/peril-settings",
   "dependencies": {
-    "@types/graphql": "^14.0.3",
+    "@types/graphql": "^14.5.0",
     "@types/semver": "^6.2.0",
     "@types/semver-sort": "0.0.0",
     "googleapis": "^44.0.0",
