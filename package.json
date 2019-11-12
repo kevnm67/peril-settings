@@ -22,7 +22,7 @@
     "semver-sort": "^0.0.4"
   },
   "devDependencies": {
-    "@slack/client": "^4.8.0",
+    "@slack/client": "^5.0.2",
     "@types/jest": "^23.3.9",
     "@types/lodash": "^4.14.146",
     "@types/node": "^10.12.9",
