@@ -2,7 +2,7 @@
   "name": "peril-settings",
   "version": "0.0.1",
   "repository": "https://github.com/kevnm67/peril-settings",
-  "author": "Kevin Morton <kevnm67@gmail.com>",
+  "author": "Kevin Morton <kevnm67@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
     "precommit": "lint-staged",
