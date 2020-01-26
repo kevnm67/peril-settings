@@ -1,5 +1,7 @@
 # peril-settings
 
+[![CircleCI](https://circleci.com/gh/kevnm67/peril-settings.svg?style=svg)](https://circleci.com/gh/kevnm67/peril-settings)
+
 [![Build Status](https://travis-ci.com/kevnm67/peril-settings.svg?branch=master)](https://travis-ci.com/kevnm67/peril-settings)
 
 ### TOC

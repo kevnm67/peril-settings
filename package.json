@@ -50,6 +50,8 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
+    "collectCoverage": true,
+    "coverageDirectory": "test-reports/coverage",
     "testRegex": "(.test)\\.(ts|tsx)$",
     "moduleFileExtensions": [
       "ts",

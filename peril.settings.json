@@ -17,10 +17,14 @@
   "tasks": {
     "trigger-scheduler": "testing/trigger-scheduler.ts",
     "slackup-reminder-tmp": "tasks/standupReminder.ts",
-    "logger": "testing/logger.ts"
+    "logger": "testing/logger.ts",
+    "pr-reminder": "tasks/prReminder.ts"
   },
   "repos": {
     "kevnm67/Endpoint": {
+      "issues.opened": "kevnm67/peril-settings@org/labeler.ts"
+    },
+    "kevnm67/KJMFastlane": {
       "issues.opened": "kevnm67/peril-settings@org/labeler.ts"
     },
     "kevnm67/lunchie": {

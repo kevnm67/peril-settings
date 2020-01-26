@@ -14,9 +14,9 @@ const CALENDAR_ID = peril.env.ON_CALL_CALENDAR_ID || ""
 export default async () => {
 	// Backed by Google Calendar
 	const events = await retrieveCalendarEvents()
-	const calendarOnCallStaffEmails = emailsForCalendarEvents(events)
-
-	await sendMessageForEmails(calendarOnCallStaffEmails)
+	// const calendarOnCallStaffEmails = emailsForCalendarEvents(events)
+	//
+	// await sendMessageForEmails(calendarOnCallStaffEmails)
 }
 
 const retrieveCalendarEvents = async (): Promise<calendar_v3.Schema$Event[]> => {
@@ -40,45 +40,6 @@ const retrieveCalendarEvents = async (): Promise<calendar_v3.Schema$Event[]> => 
 		console.error("The API returned an error: " + error)
 		return []
 	}
-}
-
-export const emailsForCalendarEvents = (events: calendar_v3.Schema$Event[], today = new Date()) => {
-	const currentSupportEvents = events.filter(event => {
-		const eventStart = new Date((event.start && event.start.date) || "")
-		const eventEnd = new Date((event.end && event.end.date) || "")
-		const ongoingEvent = eventStart <= today
-		const extendsPastToday = eventEnd > new Date(today.getTime() + 3600 * 24 * 1000)
-		return ongoingEvent && extendsPastToday
-	})
-	console.log("Current support events:")
-	currentSupportEvents.forEach((event: any) => {
-		const start = event.start.dateTime || event.start.date
-		const end = event.end.dateTime || event.end.date
-		console.log(`  ${start} - ${end}, ${event.summary}`)
-	})
-
-	const onCallStaffEmails = currentSupportEvents.reduce(
-		(acc, event) => {
-			const attendees = event.attendees || []
-
-			// Replace engbot if needed.  The following is from artsy's original logic.
-			/*
-			We need to filter because engbot, as the person who sets up the calendar
-			events, is often an attendee _of_ those events. So we filter her out of
-			the attendees iff there is more than one.
-			*/
-
-			// Filter out a given attendee if there are multiple attendees
-			const filteredAttendees = attendees
-				.map(a => a.email)
-				.filter(filterUndefineds)
-				// .filter(e => (e.startsWith("engbot@") ? attendees.length == 1 : true))
-			return acc.concat(filteredAttendees)
-		},
-		[] as string[]
-	)
-
-	return onCallStaffEmails
 }
 
 export const sendMessageForEmails = async (emails: string[]) => {

@@ -1,76 +1,84 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1
 
 defaults: &defaults
-  working_directory: /Users/distiller/peril-settings
-  shell: /bin/bash --login -o pipefail
-  environment:
-    CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-    CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-    LC_ALL: en_US.UTF-8
+  executor: node/default
 
-jobs:
-  build:
-    <<: *defaults
-    docker:
-      - image: circleci/node:4.8.2
+default_parameters: &default_parameters
+  post_install:
+    description: Custom build commands to run after install
+    type: steps
+    default: []
+  script:
+    description: Script to run.
+    type: string
+    default: ''
+
+############
+# commands #
+############
+commands:
+  setup:
+    parameters:
+      <<: *default_parameters
     steps:
       - checkout
-      - run:
-          name: yarn install
-          command: 'yarn install'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: test
-          command:
-            - yarn type-check
-            - yarn jest
-      # - run:
-      #     name: code-coverage
-      #     command: './node_modules/.bin/nyc report --reporter=text-lcov'
-      # - store_artifacts:
-      #     path: test-results.xml
-      #     prefix: tests
-      # - store_artifacts:
-      #     path: coverage
-      #     prefix: coverage
-      # - store_test_results:
-      #     path: test-results.xml
+      - node/with-cache:
+          steps:
+            - run: yarn install
+
+  run_script:
+    parameters:
+      <<: *default_parameters
+    steps:
+      - setup:
+          post_install: << parameters.post_install >>
+      - when:
+          condition: <<parameters.script>>
+          steps:
+            - run:
+                command: yarn << parameters.script >>
+                environment:
+                    JEST_JUNIT_OUTPUT_DIR: "test-reports/coverage/clover.xml"
+
+########
+# jobs #
+########
+jobs:
+  prepare:
+    <<: *defaults
+    steps:
+      - setup
+
+  build:
+    <<: *defaults
+    description: Build
+    steps:
+      - run_script:
+          script: type-check
+      - store_artifacts:
+          path: dist
 
   test:
     <<: *defaults
+    description: Test
     steps:
-      - checkout
-      - run:
-          name: yarn install
-          command: 'yarn install'
-      - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: test
-          command:
-            - yarn type-check
-            - yarn jest
+      - run_script:
+          script: jest --ci
+      - store_test_results:
+          path: test-reports/coverage
 
+#############
+# workflows #
+#############
 workflows:
-  version: 2
-  build-and-test:
+  build_and_test:
     jobs:
-    - test
+      - prepare
+      - build:
+          requires:
+            - prepare
+      - test:
+          requires:
+            - prepare
