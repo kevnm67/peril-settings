@@ -66,6 +66,8 @@ jobs:
     steps:
       - run_script:
           script: jest --ci
+      - store_artifacts:
+          path: test-reports/coverage
       - store_test_results:
           path: test-reports/coverage
 
