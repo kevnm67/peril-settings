@@ -15,7 +15,7 @@
     "@types/semver-sort": "0.0.0",
     "googleapis": "^47.0.0",
     "graphql-schema-utils": "^0.6.5",
-    "graphql-tools": "^4.0.6",
+    "graphql-tools": "^4.0.7",
     "lodash": "^4.17.11",
     "node-fetch": "^2.2.0",
     "semver": "^7.1.3",
