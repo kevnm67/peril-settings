@@ -13,7 +13,7 @@
     "@types/graphql": "^14.5.0",
     "@types/semver": "^7.1.0",
     "@types/semver-sort": "0.0.0",
-    "googleapis": "^48.0.0",
+    "googleapis": "^55.0.0",
     "graphql-schema-utils": "^0.6.5",
     "graphql-tools": "^4.0.7",
     "lodash": "^4.17.11",
