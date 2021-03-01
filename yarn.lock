@@ -1977,10 +1977,10 @@ danger-plugin-yarn@^1.3.0:
     node-fetch "^1.7.1"
     semver "^5.4.1"
 
-danger@^10.4.1:
-  version "10.4.1"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-10.4.1.tgz#7614539f234d642c8f95e625fb7f09f540a5fb97"
-  integrity sha512-C0Iz1FY1oZ1Rc98jNpdIirKasiBpSeEVj378UvCupdfJ6/ZvL/CIH1ae5NBnV6eT/GXkah44o8h/nAuXtGW6fQ==
+danger@^10.6.3:
+  version "10.6.3"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-10.6.3.tgz#a312893991a7ceb3376b177a6643b1185a9cf34b"
+  integrity sha512-9aLh21tdJGb1CNuuk0xostg2jix8jFQ+CZuC4h38832Wbcaznj+hA8i7E1VPM5d797SIGURdemLvYBlLcgZ4YQ==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@octokit/rest" "^16.43.1"
