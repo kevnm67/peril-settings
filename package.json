@@ -31,7 +31,7 @@
     "danger-plugin-spellcheck": "^1.5.0",
     "danger-plugin-yarn": "^1.3.0",
     "github-webhook-event-types": "^1.2.1",
-    "jest": "^25.1.0",
+    "jest": "^25.5.4",
     "lint-staged": "^10.0.10",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
