@@ -1,0 +1,60 @@
+version: 2
+registries:
+  git-github-com:
+    type: git
+    url: https://github.com
+    username: x-access-token
+    password: "${{secrets.GIT_GITHUB_COM_PASSWORD}}"
+
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "10:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: googleapis
+    versions:
+    - 67.0.0
+    - 67.1.0
+    - 67.1.1
+    - 68.0.0
+    - 70.0.0
+    - 71.0.0
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.22
+    - 14.14.25
+    - 14.14.28
+    - 14.14.31
+    - 14.14.32
+    - 14.14.34
+    - 14.14.35
+    - 14.14.37
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.20
+    - 26.0.21
+  - dependency-name: danger
+    versions:
+    - 10.6.0
+    - 10.6.1
+    - 10.6.2
+    - 10.6.3
+  - dependency-name: lint-staged
+    versions:
+    - 10.5.3
+  - dependency-name: semver
+    versions:
+    - 7.3.4
+  registries:
+  - git-github-com
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "10:00"
+  open-pull-requests-limit: 10
+  registries:
+  - git-github-com
